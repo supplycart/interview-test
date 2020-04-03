@@ -12,6 +12,6 @@ class Product extends Model
 
   public function displayPrice()
   {
-    return money_format('RM%i', $this->price);
+    return printf('RM ', $this->price);
   }
 }

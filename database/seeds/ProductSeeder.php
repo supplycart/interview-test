@@ -17,18 +17,21 @@ class ProductSeeder extends Seeder
       });*/
       Product::create([
         'name' => 'face-mask',
+        'image' => 'face-mask',
         'price' => 200,
         'description' => 'Protects from pandemic.'
       ]);
 
       Product::create([
         'name' => 'sanitiser',
+        'image' => 'sanitiser',
         'price' => 500,
         'description' => 'Kills coronavirus'
       ]);
 
       Product::create([
         'name' => 'garlic',
+        'image' => 'garlic',
         'price' => 200,
         'description' => 'absorbs coronavirus'
       ]);

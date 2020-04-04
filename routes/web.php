@@ -21,3 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('add-to-cart/{id}', 'CartController@addToCart');
+Route::patch('update-cart', 'ProductsController@update');
+Route::delete('remove-from-cart', 'CartController@remove');

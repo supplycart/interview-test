@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-  {
   protected $table = 'orders';
 
   protected $fillable = [
@@ -23,5 +22,4 @@ class Order extends Model
   {
       return $this->hasMany(OrderItem::class);
   }
-}
 }

@@ -24,3 +24,5 @@ Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('add-to-cart/{id}', 'CartController@addToCart');
 Route::patch('update-cart', 'ProductsController@update');
 Route::delete('remove-from-cart', 'CartController@remove');
+Route::get('/checkout', 'OrderController@index')->name('checkout.index');
+Route::post('/checkout', 'OrderController@store')->name('checkout.store');

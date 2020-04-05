@@ -27,7 +27,7 @@
         <tbody>
           <?php $total = 0 ?>
           @if(session('cart'))
-              @foreach(session('cart') as $id => $product)
+              @foreach(session('cart') as $itemID => $product)
 
                   <?php $total += $product['price'] * $product['quantity'] ?>
 
@@ -46,8 +46,8 @@
                       </td>
                       <td data-th="Subtotal" class="text-center">${{ $product['price'] * $product['quantity'] }}</td>
                       <!--<td class="actions" data-th="">
-                          <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
-                          <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fa fa-trash-o">Delete</i></button>
+                          <button class="btn btn-info btn-sm update-cart" data-id="{{ $itemID }}"><i class="fa fa-refresh"></i></button>
+                          <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $itemID }}"><i class="fa fa-trash-o">Delete</i></button>
                       </td>-->
                   </tr>
               @endforeach
@@ -55,17 +55,17 @@
 
         </tbody>
         <tfoot>
-        <tr class="visible-xs">
-            <td class="text-center"><strong>Total: RM {{ $total }}</strong></td>
-        </tr>
+
         <tr>
-            <td><a href="{{ url('/home') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            <td><a href="{{ route('home') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total: RM {{ $total }}</strong></td>
         </tr>
         </tfoot>
     </table>
-    <a href="#" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
+    <?php session(['total' => $total]);?>
+
+    <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg btn-block">Proceed To Checkout</a>
 
 @endsection
 @section('scripts')

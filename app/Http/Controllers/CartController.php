@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
-use DB;
+//use DB;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -24,9 +24,9 @@ class CartController extends Controller
         return view('cart');
     }
 
-    public function addToCart($id)
+    public function addToCart($itemID)
     {
-          $product = Product::find($id);
+          $product = Product::find($itemID);
 
           if(!$product) {
 
@@ -40,7 +40,7 @@ class CartController extends Controller
           if(!$cart) {
 
             $cart = [
-                    $id => [
+                    $itemID => [
                         "name" => $product->name,
                         "quantity" => 1,
                         "price" => $product->price,
@@ -55,9 +55,9 @@ class CartController extends Controller
           }
 
           // if cart not empty then check if this product exist then increment quantity
-          if(isset($cart[$id])) {
+          if(isset($cart[$itemID])) {
 
-            $cart[$id]['quantity']++;
+            $cart[$itemID]['quantity']++;
 
             session()->put('cart', $cart);
 
@@ -66,7 +66,7 @@ class CartController extends Controller
           }
 
           // if item not exist in cart then add to cart with quantity = 1
-          $cart[$id] = [
+          $cart[$itemID] = [
             "name" => $product->name,
             "quantity" => 1,
             "price" => $product->price,

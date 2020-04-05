@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -14,5 +15,11 @@ class UserSeeder extends Seeder
       /*factory(App\User::class, 3)->create()->each(function ($user) {
 
       });*/
+
+      User::create([
+        'name' => 'test',
+        'email' => 'test@test.com',
+        'password' => 'testpassword'
+        ]);
     }
 }

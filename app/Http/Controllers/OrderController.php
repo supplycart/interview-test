@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Order;
+use App\OrderItem;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -34,25 +35,40 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+      $cart = session()->get('cart');
+
+        $order_number = 'ORD-'.strtoupper(uniqid());
+
         $order = Order::create([
-        'order_number'      =>  'ORD-'.strtoupper(uniqid()),
+        'order_number'      =>  $order_number,
         'user_id'           =>  auth()->user()->id,
         //'status'            =>  'pending',
         'grand_total'       =>  session()->get('total'),
         //'item_count'        =>  Cart::getTotalQuantity(),
         //'payment_status'    =>  0,
         //'payment_method'    =>  null,
-        'first_name'        =>  $params['first_name'],
-        'last_name'         =>  $params['last_name'],
-        'address'           =>  $params['address'],
-        'city'              =>  $params['city'],
-        'country'           =>  $params['country'],
-        'post_code'         =>  $params['post_code'],
-        'phone_number'      =>  $params['phone_number'],
-        'notes'             =>  $params['notes']
+        'name'              =>  auth()->user()->name,
+        'address'           =>  $request['address'],
+        'city'              =>  $request['city'],
+        'country'           =>  $request['country'],
+        'post_code'         =>  $request['post_code'],
+        'phone_number'      =>  $request['phone_number'],
+        'notes'             =>  $request['notes']
       ]);
 
-      return redirect()->back()->with('success', 'Order completed!');
+      foreach ($cart as $itemID => $product) {
+
+          $orderItem = OrderItem::create([
+            'order_id'      =>  $order->id,
+            'product_id'    =>  $product['id'],
+            'quantity'      =>  $product['quantity'],
+            'price'         =>  $product['price'],
+
+          ]);
+      }
+
+      session()->forget('cart');
+      return redirect('home')->with('success', 'Order completed!');
     }
 
     /**

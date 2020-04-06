@@ -34,12 +34,8 @@ $total = session('total');
                             <article class="card-body">
                                 <div class="form-row">
                                     <div class="col form-group">
-                                        <label>First name</label>
-                                        <input type="text" class="form-control" name="first_name" value="{{ auth()->user()->name}}" disabled>
-                                    </div>
-                                    <div class="col form-group">
-                                        <label>Last name</label>
-                                        <input type="text" class="form-control" name="last_name" value="{{ auth()->user()->name}}" disabled>
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" value="{{ auth()->user()->name}}" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -66,11 +62,11 @@ $total = session('total');
                                         <input type="text" class="form-control" name="phone_number">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label>Email Address</label>
                                     <input type="email" class="form-control" name="email" value="{{ auth()->user()->email}}" disabled>
                                     <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label>Order Notes</label>
                                     <textarea class="form-control" name="notes" rows="6"></textarea>

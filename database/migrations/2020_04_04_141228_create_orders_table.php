@@ -23,10 +23,8 @@ class CreateOrdersTable extends Migration
           //$table->unsignedInteger('item_count');
 
           /*$table->boolean('payment_status')->default(1);
-          $table->string('payment_method')->nullable();
-          */
-          $table->string('first_name');
-          $table->string('last_name');
+          $table->string('payment_method')->nullable();*/
+          $table->string('name');
           $table->text('address');
           $table->string('city');
           $table->string('country');

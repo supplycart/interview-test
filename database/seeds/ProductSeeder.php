@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
         'name' => 'garlic',
         'image' => 'garlic',
         'price' => 200,
-        'description' => 'absorbs coronavirus'
+        'description' => 'absorbs coronavirus, consumption also helps with social distancing'
       ]);
     }
 }

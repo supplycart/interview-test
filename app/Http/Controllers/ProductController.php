@@ -123,10 +123,11 @@ class ProductController extends Controller
         $cart = new Cart($oldCart);
         $order = new Order();
         $order->cart = $cart;
-        Auth::user()->orders->save($order);
+        ///Auth::user()->orders()->save($order);
 
         $orders = Auth::user()->orders;
-        Session::forget('cart');
+        $orders->save($order);
+        
         return view('user.profile',['orders'=>$orders]);
 
     }

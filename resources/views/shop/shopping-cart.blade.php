@@ -33,7 +33,7 @@
         <div class="row">
             
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" >
-                <a href="{{ route('placeorder') }}" type="button" class="btn btn-success">placeorder</a>
+                <a href="{{ route('place Order') }}" type="button" class="btn btn-success">placeorder</a>
                 {{-- <a href="{{ route('placeorder') }}" type="button" class="btn btn-success">Plcae order</a> --}}
             </div>
         </div>

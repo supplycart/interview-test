@@ -1,18 +1,16 @@
 <?php
 namespace App\Http\Controllers;
-
 use App\Cart;
 use App\Product;
 use App\Order;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Session;
 use App\User;
-
-
 use Illuminate\Support\Facades\Auth;
-use Stripe\Charge;
 use Stripe\Stripe;
+use Stripe\charge;
+
+
 
 
 class ProductController extends Controller
@@ -90,24 +88,26 @@ class ProductController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        // Stripe::setApiKey('##');
-        // try {
-        //     $charge = Charge::create(array(
-        //         "amount" => $cart->totalPrice * 100,
-        //         "currency" => "usd",
-        //         "source" => $request->input('stripeToken'), // obtained with Stripe.js
-        //         "description" => "Test Charge"
-        //     ));
-        //     $order = new Order();
-        //     $order->cart = serialize($cart);
-        //     $order->address = $request->input('address');
-        //     $order->name = $request->input('name');
-        //     $order->payment_id = $charge->id;
+        Stripe::setApiKey('sk_test_51H7TZCBuUP1HimFIOv1LAfZ1k4IwVXe8yLBmWzyfuklhdti8Yj7frxxhs5SzQwJnidvO3xMa26OfuwY7MNOivZVN000Qd44FJZ');
+        try {
+            $charge = Charge::create(array(
+                "amount" => $cart->totalPrice * 100,
+                "currency" => "usd",
+                "source" => $request->input('stripeToken'), // obtained with Stripe.js
+                "description" => "Test Charge"
+            ));
+            $order = new Order();
+            $order->cart = serialize($cart);
+            $order->address = $request->input('address');
+            $order->name = $request->input('name');
+            $order->payment_id = $charge->id;
             
-        //     Auth::user()->$order()->save($order);
-        // } catch (\Exception $e) {
-        //     return redirect()->route('checkout')->with('error', $e->getMessage());
-        // }
+            //Auth::user()->$orders()->save($order);
+            $orders = Auth::user()->orders;
+            $orders->save($order);
+        } catch (\Exception $e) {
+            return redirect()->route('checkout')->with('error', $e->getMessage());
+        }
 
         Session::forget('cart');
         return redirect()->route('product.index')->with('success', 'Successfully purchased products!');

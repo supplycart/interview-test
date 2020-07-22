@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
-use Stripe\charge;
+use Stripe\Charge;
 
 
 

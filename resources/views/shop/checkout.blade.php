@@ -12,7 +12,7 @@
             <div id="charge-error" class="alert alert-danger {{ !Session::has('error') ? 'hidden' : ''  }}">
                 {{ Session::get('error') }}
             </div>
-            <form action="#" method="" id="checkout-form" name="checkout-form">
+            <form action="{{ route('checkout') }}" method="post" id="checkout-form">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 {{ csrf_field() }}
-                <button type="submit" class="btn btn-success">Pay now</button>
+                <button type="submit" class="btn btn-success">Buy now</button>
             </form>
         </div>
     </div>
@@ -71,6 +71,6 @@
 
 
 @section('scripts')
-    <script src="https://js.stripe.com/v3/"></script>
-    <script type="text/javascript" src="{{ URL::to('src/js/checkout.js') }}"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{{ URL::to('src/js/checkout.js') }}"></script>
 @endsection

@@ -52,6 +52,12 @@ Route::post('/checkout', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/placeorder', [
+    'uses' => 'ProductController@getPlaceOrder',
+    'as' => 'placeorder',
+    'middleware' => 'auth'
+]);
+
 
 
 

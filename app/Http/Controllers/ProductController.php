@@ -111,6 +111,25 @@ class ProductController extends Controller
         Session::forget('cart');
         return redirect()->route('product.index')->with('success', 'Successfully purchased products!');
     }
+
+
+
+
+    public function getPlaceOrder(){            // add the order without payment
+        if (!Session::has('cart')) {
+            return redirect()->route('shop.shoppingCart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $order = new Order();
+        $order->cart = $cart;
+        Auth::user()->orders->save($order);
+
+        $orders = Auth::user()->orders;
+        Session::forget('cart');
+        return view('user.profile',['orders'=>$orders]);
+
+    }
     
 }
 

@@ -103,8 +103,7 @@ class ProductController extends Controller
             $order->payment_id = $charge->id;
             
             //Auth::user()->$orders()->save($order);
-            $orders = Auth::user()->orders;
-            $orders->save($order);
+             Auth::user()->orders->save($order);
         } catch (\Exception $e) {
             return redirect()->route('checkout')->with('error', $e->getMessage());
         }

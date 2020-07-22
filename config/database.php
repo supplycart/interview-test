@@ -1,6 +1,6 @@
-$DATABASE_URL=parse_url(‘DATABASE_URL’);
-<?php
 
+<?php
+$DATABASE_URL=parse_url('postgres://dbnjesxriknvci:83859d53967f4ec0074e9188b68992c7bdcf6697885ab1db75a8fda2f1a93edf@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d9q0ni9bot5pvn');
 use Illuminate\Support\Str;
 
 return [
@@ -65,6 +65,7 @@ return [
         ],
 
         'pgsql' => [
+            
             'driver' => 'pgsql',
             'url' => env('postgres://dbnjesxriknvci:83859d53967f4ec0074e9188b68992c7bdcf6697885ab1db75a8fda2f1a93edf@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d9q0ni9bot5pvn'),
             'host' => $DATABASE_URL["host"],

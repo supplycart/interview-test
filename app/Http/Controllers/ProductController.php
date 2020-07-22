@@ -101,7 +101,7 @@ class ProductController extends Controller
             $order->address = $request->input('address');
             $order->name = $request->input('name');
             $order->payment_id = $charge->id;
-            
+
             //Auth::user()->$orders()->save($order);
              Auth::user()->orders->save($order);
         } catch (\Exception $e) {
@@ -126,12 +126,12 @@ class ProductController extends Controller
         ///Auth::user()->orders()->save($order);
 
         $orders = Auth::user()->orders;
-        $orders->save($order);
-        
+
+
         return view('user.profile',['orders'=>$orders]);
 
     }
-    
+
 }
 
 

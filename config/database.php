@@ -1,3 +1,4 @@
+$DATABASE_URL=parse_url(‘DATABASE_URL’);
 <?php
 
 use Illuminate\Support\Str;
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +66,7 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
+            'url' => env('postgres://dbnjesxriknvci:83859d53967f4ec0074e9188b68992c7bdcf6697885ab1db75a8fda2f1a93edf@ec2-34-225-162-157.compute-1.amazonaws.com:5432/d9q0ni9bot5pvn'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),

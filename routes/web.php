@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () { // GET request, homepage link is /
+    return view('welcome'); // will show a view as written in the welcome file
+});
+
+// new webpage
+Route::get('/contact_us', function () { 
+    return "my contact";
+});
+
+// callback function = function in another file
+Route::get('/hello', 'Home\HomeController@hello');
+
+// auto-generate appropriate HTTP request for CRUD operations
+Route::resource('/user', 'Home\UserController');
+
+// route depending on input
+Route::get('/post/{id}', function ($id) { 
+    return "Post id: " . $id;
 });

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CartItem;
-use App\Models\Customer;
 use App\Models\Product;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -20,8 +20,8 @@ class HomeController extends Controller
     public function relationship(){
         $id = 1;
 
-        $customer = Customer::find($id);
-        echo "<h3>Customer</h3>" . $customer->fname;
+        $customer = User::find($id);
+        echo "<h3>Customer</h3>" . $customer->name;
         echo "<br>Cart inventory: ";
         echo $customer->cartItems;
 

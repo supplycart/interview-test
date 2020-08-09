@@ -22,24 +22,24 @@ class CreateCartItemTable extends Migration
          */
         Schema::create('cart_item', function (Blueprint $table) {
             $table->increments("id");
-            $table->integer("cust_id")->unsigned();
+            $table->integer("user_id")->unsigned();
             $table->integer("prod_id")->unsigned();
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->boolean("checked_out")->default(0);
         });
 
         Schema::table("cart_item", function(Blueprint $table){
-            $table->foreign("cust_id")->references("id")->on("customer");
+            $table->foreign("user_id")->references("id")->on("users");
             $table->foreign("prod_id")->references("id")->on("product");
         });
 
         DB::table("cart_item")->insert([
             [
-                "cust_id"=>1,
+                "user_id"=>1,
                 "prod_id"=>1
             ],
             [
-                "cust_id"=>1,
+                "user_id"=>1,
                 "prod_id"=>2
             ]
         ]);

@@ -10,14 +10,14 @@ class CartItem extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        "cust_id",
+        "user_id",
         "prod_id",
         "created_at",
         "checked_out"
     ];
 
     public function customer(){
-        return $this->belongsTo("App\Models\Customer", "cust_id");
+        return $this->belongsTo("App\User", "user_id");
     }
 
     public function product(){

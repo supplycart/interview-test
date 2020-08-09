@@ -13,6 +13,7 @@
         <th><strong>Product Name</strong></th>
         <th><strong>Product Description</strong></th>
         <th><strong>Price</strong></th>
+        <th></th>
       </tr>
     </thead>
     <tbody class=capitalize>
@@ -25,6 +26,7 @@
             <td>{{$product->name}}</td>
             <td>{{$product->description}}</td>
             <td>{{$price}}</td>
+            <td><button>Add to cart</button></td>
         </tr>
         @endforeach
     </tbody>

@@ -45,7 +45,6 @@ pages i need:
 home (login)
 register
 products
-product
 cart
 order
 orderdone

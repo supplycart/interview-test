@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () { // GET request, homepage link is /
+Route::get('/sample', function () { // GET request, homepage link is /
     return view('Unused.welcome'); // will show a view as written in the welcome file
 });
 
@@ -44,7 +44,11 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/products', 'ProductsController@displayAll');
 // Display all products --> should be moved to /home
+Route::get("/", function(){
+    return view("landing");
+});
 Route::get('/home', 'ProductsController@displayAll');
+Route::get("/cart", "CartController@displayCart");
 
 
 /*

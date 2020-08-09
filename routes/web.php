@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () { // GET request, homepage link is /
-    return view('welcome'); // will show a view as written in the welcome file
+    return view('Unused.welcome'); // will show a view as written in the welcome file
 });
 
 // new webpage
@@ -40,19 +40,23 @@ Route::get('/post/{id}', function ($id) {
 
 Route::get("/relationship", "Home\HomeController@relationship");
 
-// Display all products
-Route::get('/products', 'ProductsController@displayAll');
+Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/products', 'ProductsController@displayAll');
+// Display all products --> should be moved to /home
+Route::get('/home', 'ProductsController@displayAll');
+
 
 /*
 pages i need:
-home (login)
-register
-products
+home (login) /
+register /
+products /
 cart
 order
 orderdone
-logout
+logout /
 */
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+

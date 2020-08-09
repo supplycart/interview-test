@@ -1,4 +1,4 @@
-@extends("layout.app")
+@extends("layouts.page")
 
 @section("header")
 <div class="title flex-center">

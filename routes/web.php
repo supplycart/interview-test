@@ -37,6 +37,9 @@ Route::get('/post/{id}', function ($id) {
     return "Post id: " . $id;
 });
 
+
+Route::get("/relationship", "Home\HomeController@relationship");
+
 // Display all products
 Route::get('/products', 'ProductsController@displayAll');
 

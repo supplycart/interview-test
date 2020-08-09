@@ -18,22 +18,18 @@ class CreateCustomerTable extends Migration
             $table->string('fname', 100);
             $table->string('lname', 100);
             $table->string('email', 100)->unique();
-            $table->string('password', 8);
+            $table->string('password', 8); //change to bcrypt()
 
-            $table->integer('register_on')->unsigned();
+            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->boolean('record_deleted')->default(0);
-            $table->timestamps();
         });
 
-        $datetime = new DateTime();
-        $datetime = $datetime->getTimeStamp();
         DB::table("customer")->insert([
             [
                 "fname"=>"test",
                 "lname"=>"test",
                 "email"=>"test@test.com",
-                "password"=>"admin",
-                "register_on"=>$datetime
+                "password"=>"admin"
             ]
         ]);
 

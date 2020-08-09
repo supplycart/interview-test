@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Model\ProductModel;
 
 class ProductsController extends Controller
 {
     public function displayAll(){
-        $products = DB::table("product")->get();
+        $products = ProductModel::orderby("name", "asc")->get();
         return view('products', compact("products"));
     }
 }

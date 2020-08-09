@@ -25,6 +25,18 @@ class CreateCustomerTable extends Migration
             $table->timestamps();
         });
 
+        $datetime = new DateTime();
+        $datetime = $datetime->getTimeStamp();
+        DB::table("customer")->insert([
+            [
+                "fname"=>"test",
+                "lname"=>"test",
+                "email"=>"test@test.com",
+                "password"=>"admin",
+                "register_on"=>$datetime
+            ]
+        ]);
+
     }
 
     /**

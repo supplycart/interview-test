@@ -15,9 +15,8 @@ class CreateCartTable extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cust_id')->unsigned();
+            $table->integer('cust_id')->unsigned()->unique();
 
-            $table->integer('register_on')->unsigned();
             $table->boolean('record_deleted')->default(0);
             $table->timestamps();
         });
@@ -25,6 +24,12 @@ class CreateCartTable extends Migration
         Schema::table('cart', function(Blueprint $table){
             $table->foreign('cust_id')->references('id')->on('customer');
         });
+
+        DB::table("cart")->insert([
+            [
+                "cust_id"=>1
+            ]
+        ]);
     }
 
     /**

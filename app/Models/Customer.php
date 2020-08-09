@@ -4,18 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerModel extends Model
+class Customer extends Model
 {
     protected $table="customer";
     protected $primaryKey = "id";
-    public $timestamps = false;
 
     protected $fillable = [
         "fname",
         "lname",
         "email",
         "password",
-        "register_on"
+        "created_at"
     ];
+
+    public function cartItems(){
+        return $this->hasMany("App\Models\CartItem", "cust_id");
+    }
 
 }

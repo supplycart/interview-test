@@ -49,8 +49,8 @@ Route::get("/", function(){
 });
 Route::get('/home', 'ProductsController@index');
 Route::get("/cart", "CartController@index");
-Route::get("/add-to-cart/{id}", "ProductsController@addToCart");
-
+Route::get("/add-to-cart/{id}", "CartController@addToCart");
+Route::get("/remove-from-cart/{id}", "CartController@removeFromCart");
 
 /*
 pages i need:

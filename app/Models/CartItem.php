@@ -9,11 +9,11 @@ class CartItem extends Model
     protected $table="cart_item";
     protected $primaryKey = "id";
 
+    public $timestamps = false;
+
     protected $fillable = [
         "user_id",
-        "prod_id",
-        "created_at",
-        "checked_out"
+        "prod_id"
     ];
 
     public function customer(){

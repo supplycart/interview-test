@@ -47,8 +47,9 @@ Auth::routes();
 Route::get("/", function(){
     return view("landing");
 });
-Route::get('/home', 'ProductsController@displayAll');
-Route::get("/cart", "CartController@displayCart");
+Route::get('/home', 'ProductsController@index');
+Route::get("/cart", "CartController@index");
+Route::get("/add-to-cart/{id}", "ProductsController@addToCart");
 
 
 /*

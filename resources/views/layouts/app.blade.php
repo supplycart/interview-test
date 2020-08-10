@@ -57,7 +57,7 @@
 
                                 <!-- Cart button on drop down menu -->
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('/') }}">
+                                    <a class="dropdown-item" href="{{ url('/cart') }}">
                                         Cart
                                     </a>
 
@@ -82,6 +82,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @yield("script")
     </div>
 </body>
 </html>

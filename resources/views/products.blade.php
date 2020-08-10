@@ -41,7 +41,7 @@
 @endsection
 
 @section('content')
-<table>
+<table id="products">
     <thead>
       <tr>
         <th><strong>Product Name</strong></th>
@@ -60,10 +60,81 @@
             <td>{{$product->name}}</td>
             <td>{{$product->description}}</td>
             <td>{{$price}}</td>
-            <td><button>Add to cart</button></td>
+            <td><a href={{url('add-to-cart/'.$product->id)}} class="btn text-center trigger-pop-up">Add to cart</a></td>
         </tr>
         @endforeach
     </tbody>
-  </table>
+</table>
+
+{{-- ??pop up notification that shows whether product is successfully added --}}
+{{-- <div id="pop-up" class="popUpBox">
+  <span class="helper"></span>
+  <div>
+    <div class="popupCloseButton">&times;</div>
     
-@endsection 
+  </div>
+</div> --}}
+
+@if(session("success"))
+  <script>
+    alert("Product added to cart successfully!");
+  </script>
+@else
+  <script>
+    alert("Product has already been added before!");
+  </script>
+@endif
+
+@endsection
+
+{{-- .popUpBox {
+  background:rgba(0,0,0,.4);
+  cursor:pointer;
+  display:none;
+  height:100%;
+  position:fixed;
+  text-align:center;
+  top:0;
+  width:100%;
+  z-index:10000;
+}
+.popUpBox .helper{
+  display:inline-block;
+  height:100%;
+  vertical-align:middle;
+}
+.popUpBox > div{
+  background-color: #fff;
+  box-shadow: 10px 10px 60px #555;
+  display: inline-block;
+  height: auto;
+  max-width: 551px;
+  min-height: 100px;
+  vertical-align: middle;
+  width: 60%;
+  position: relative;
+  border-radius: 8px;
+  padding: 15px 5%;
+}
+.popupCloseButton {
+  background-color: #fff;
+  border: 3px solid #999;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 25px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+.popupCloseButton:hover {
+  background-color: #ccc;
+}
+.trigger-pop-up{
+cursor:pointer;
+} --}}

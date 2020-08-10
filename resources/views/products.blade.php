@@ -74,7 +74,7 @@
     
   </div>
 </div> --}}
-
+{{-- 
 @if(session("success"))
   <script>
     alert("Product added to cart successfully!");
@@ -83,7 +83,7 @@
   <script>
     alert("Product has already been added before!");
   </script>
-@endif
+@endif --}}
 
 @endsection
 

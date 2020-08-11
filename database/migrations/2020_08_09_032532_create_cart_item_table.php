@@ -13,13 +13,6 @@ class CreateCartItemTable extends Migration
      */
     public function up()
     {
-        /**
-         * Cart and products
-         * User can keep on adding the same product to cart when product already existed?
-         * after check out this time, next time user can still add the same product into the cart
-         * so, solely cart_id + prod_id are not sufficient to be primary key
-         * hence, make use of surrogate key
-         */
         Schema::create('cart_item', function (Blueprint $table) {
             $table->increments("id");
             $table->integer("user_id")->unsigned();

@@ -23,9 +23,9 @@ class CartController extends Controller
                         ->where("checked_out", "=", 0)
                         ->join("product", "cart_item.prod_id", "=", "product.id")
                         ->select("product.id", "product.name", "product.price_per_unit", "product.qty_in_stock")
+                        ->orderby("product.name")
                         ->get();
 
-        // handle the case where cart is empty?
         return view("cart", compact("productsInCart"));
     }
 

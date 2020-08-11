@@ -19,7 +19,6 @@ class CreateOrderTable extends Migration
             $table->integer("user_id")->unsigned();
             $table->integer("prod_id")->unsigned();
             $table->float("subtotal", 99, 2)->default(0);
-            $table->string("ship_address", 500);
         });
 
         Schema::table("order", function(Blueprint $table){

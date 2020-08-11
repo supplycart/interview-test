@@ -13,8 +13,7 @@ class Order extends Model
 
     protected $fillable = [
         "user_id",
-        "prod_id",
-        "ship_address"
+        "prod_id"
     ];
 
     public function products(){

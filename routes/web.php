@@ -51,6 +51,7 @@ Route::get('/home', 'ProductsController@index');
 Route::get("/cart", "CartController@index");
 Route::get("/add-to-cart/{id}", "CartController@addToCart");
 Route::get("/remove-from-cart/{id}", "CartController@removeFromCart");
+Route::post("/order", "OrderController@viewOrder")->name("checkout");
 
 /*
 pages i need:

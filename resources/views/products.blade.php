@@ -33,7 +33,7 @@
               @if ($product->qty_in_stock <= 0)
                 Out of Stock!
               @else
-                <a href={{url('add-to-cart/'.$product->id)}} class="btn text-center trigger-pop-up">Add to cart</a>
+                <a href={{url('add-to-cart/'.$product->id)}} class="btn btn-primary text-center trigger-pop-up">Add to cart</a>
               @endif
             </td>
         </tr>

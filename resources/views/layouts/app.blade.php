@@ -89,8 +89,12 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <!-- Cart button on drop down menu -->
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- Home button on dropdown-menu --}}
+                                    <a class="dropdown-item" href="{{ url('/home') }}">
+                                        Home
+                                    </a>
+                                    <!-- Cart button on dropdown-menu -->
                                     <a class="dropdown-item" href="{{ url('/cart') }}">
                                         Cart
                                     </a>

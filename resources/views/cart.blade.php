@@ -53,8 +53,9 @@
                 @endforeach
             </tbody>
         </table>
+        <br>
         {{-- checkout button --}}
-        <input type="submit" value="Check Out">
+        <input type="submit" class="btn btn-primary offset-md-7" value="Check Out">
     </form>
 
     <script>

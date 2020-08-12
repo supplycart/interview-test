@@ -13,7 +13,7 @@ class Order extends Model
 
     protected $fillable = [
         "user_id",
-        "prod_id"
+        "subtotal"
     ];
 
     public function products(){

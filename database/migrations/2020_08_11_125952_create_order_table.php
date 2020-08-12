@@ -17,13 +17,11 @@ class CreateOrderTable extends Migration
             $table->increments("id");
             $table->timestamp("order_date")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer("user_id")->unsigned();
-            $table->integer("prod_id")->unsigned();
             $table->float("subtotal", 99, 2)->default(0);
         });
 
         Schema::table("order", function(Blueprint $table){
             $table->foreign("user_id")->references("id")->on("users");
-            $table->foreign("prod_id")->references("id")->on("product");
         });
     }
 

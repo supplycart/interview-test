@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LineQuantity extends Model
 {
-    protected $table="order";
+    protected $table="line_quantity";
 
     public $timestamps = false;
 

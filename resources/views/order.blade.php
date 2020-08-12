@@ -21,6 +21,7 @@
     <tbody class=capitalize>
         @php
             $subtotal = 0;
+            $order = array();
         @endphp
         @foreach ($products as $product)
         @php
@@ -28,7 +29,9 @@
             $qty = (integer)$product[1];
             $total_price = $qty*((float)$details->price_per_unit);
             $total_price = number_format((float)$total_price, 2, ".", "");
+
             $subtotal += $total_price;
+            array_push($order, array($details->id, $qty));
         @endphp
         <tr>
             <td>{{$details->name}}</td>
@@ -47,9 +50,45 @@
             </td>
     </tbody>
 </table>
-
+<br>
+<br>
 {{-- payment form --}}
-<form action="{{route()}}" method="POST">
+<div class="justify-content-center row">
+    <div class=col-md-8>
+        <div class=card>
+            <div class=card-header>Payment</div>
+            <div class="card-body">
+                <form action="{{route("placeOrder")}}" method="POST">
+                    {{csrf_field()}}
+                    <div class="form-group row">
+                        <label for="addr" class="col-md-2 col-form-label text-md-right">Shipping Address</label>
+                        <div class="col-md-6">
+                            <textarea id="addr" name="addr" cols=100></textarea>
+                        </div>
+                    </div>
 
-</form>
+                    <div class="form-group row">
+                        <label for="card" class="col-md-2 col-form-label text-md-right">Card Number</label>
+                        <div class="col-md-6">
+                            <input type="text" id="card" name="card"><br>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="expire" class="col-md-2 col-form-label text-md-right">Expiry Date</label>
+                        <div class="col-md-6">
+                            <input type="text" id="expire" name="expire"><br>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="orders" value="{{json_encode($order, TRUE)}}">
+
+                    <div class="col-md-4 offset-md-2">
+                        <input type="submit" class="btn btn-primary" value="Confirm Order">  
+                    </div>    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

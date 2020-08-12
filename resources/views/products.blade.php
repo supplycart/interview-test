@@ -29,7 +29,13 @@
             <td>{{$product->name}}</td>
             <td>{{$product->description}}</td>
             <td>{{$price}}</td>
-            <td><a href={{url('add-to-cart/'.$product->id)}} class="btn text-center trigger-pop-up">Add to cart</a></td>
+            <td>
+              @if ($product->qty_in_stock <= 0)
+                Out of Stock!
+              @else
+                <a href={{url('add-to-cart/'.$product->id)}} class="btn text-center trigger-pop-up">Add to cart</a>
+              @endif
+            </td>
         </tr>
         @endforeach
     </tbody>

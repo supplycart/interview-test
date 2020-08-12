@@ -30,7 +30,7 @@ Route::get('/read', 'Home\HomeController@read');
 Route::get('/delete', 'Home\HomeController@delete');
 
 // auto-generate appropriate HTTP request for CRUD operations
-Route::resource('/user', 'Home\UserController');
+// Route::resource('/user', 'Home\UserController');
 
 // route depending on input
 Route::get('/post/{id}', function ($id) { 

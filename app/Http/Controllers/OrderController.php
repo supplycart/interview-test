@@ -16,7 +16,7 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
-    public function viewOrder(Request $request){
+    public function index(Request $request){
         $user = auth()->user();
         $boxes = $request->checkbox;
 
@@ -25,16 +25,13 @@ class OrderController extends Controller
             $prod_details = Product::find($prod_id);
             array_push($products, array($prod_details, $qty));
         }
-        foreach ($products as $prod){
-            print_r($prod[0]->name);
-        }
-        // print_r($products);
-        // return view("order", compact("products"));
+        return view("order", compact("products"));
     }
 
-    public function addOrder(Request $request){
+    public function placeOrder(Request $request){
         // store into order and line_quantity tables
         // cart update checked_out as 1
-        // need to store in an array as well
+        // decrement qty_in_stock by qty amount 
+        // display thank you for shopping with us page
     }
 }

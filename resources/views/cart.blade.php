@@ -45,7 +45,7 @@
                         <input type=button value="+" id="minus{{$product->id}}" onclick="add({{$product->id}}, {{$product->qty_in_stock}}, {{$price}})">
                         </div>
                     </td>
-                <td><p id="totalprice{{$product->id}}">{{$price}}</p></td> 
+                <td class=number><p id="totalprice{{$product->id}}">{{$price}}</p></td> 
                 <td>
                     <input type=checkbox id="checkbox{{$product->id}}" name="checkbox[{{$product->id}}]" value=1>
                 </td>

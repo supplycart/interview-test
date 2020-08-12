@@ -35,6 +35,10 @@
         }
         th, td {
             padding:4px;
+            text-align:center;
+        }
+        .number{
+            text-align:right;
         }
         .title {
             font-size: 48px;

@@ -19,19 +19,37 @@
       </tr>
     </thead>
     <tbody class=capitalize>
-        {{-- $products is a list of lists --}}
+        @php
+            $subtotal = 0;
+        @endphp
         @foreach ($products as $product)
         @php
-            $price = $product->price_per_unit;
-            $price = number_format((float)$price, 2, ".", "");
+            $details = $product[0];
+            $qty = (integer)$product[1];
+            $total_price = $qty*((float)$details->price_per_unit);
+            $total_price = number_format((float)$total_price, 2, ".", "");
+            $subtotal += $total_price;
         @endphp
         <tr>
-            <td>{{$product->name}}</td>
-            <td>{{$product->description}}</td>
-            <td>{{$price}}</td>
-            <td><a href={{url('add-to-cart/'.$product->id)}} class="btn text-center trigger-pop-up">Add to cart</a></td>
+            <td>{{$details->name}}</td>
+            <td class=number>{{$qty}}</td>
+            <td class=number>{{$total_price}}</td>
         </tr>
         @endforeach
+        <tr>
+            <td ><strong>Subtotal:</strong></td>
+            <td></td>
+            <td class=number>
+                @php
+                    $subtotal = number_format((float)$subtotal, 2, ".", "");
+                @endphp
+                {{$subtotal}}
+            </td>
     </tbody>
 </table>
+
+{{-- payment form --}}
+<form action="{{route()}}" method="POST">
+
+</form>
 @endsection

@@ -54,16 +54,5 @@ Route::get("/remove-from-cart/{id}", "CartController@removeFromCart");
 Route::post("/order", "OrderController@index")->name("checkout");
 Route::post("/thankyou", "OrderController@placeOrder")->name("placeOrder");
 
-/*
-pages i need:
-home (login) /
-register /
-products /
-cart
-order
-orderdone
-logout /
-*/
-
 
 

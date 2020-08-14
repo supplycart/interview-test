@@ -13,37 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/sample', function () { // GET request, homepage link is /
-    return view('Unused.welcome'); // will show a view as written in the welcome file
-});
-
-// new webpage
-Route::get('/contact_us', function () { 
-    return "my contact";
-});
-
-// callback function = function in another file
-Route::get('/hello', 'Home\HomeController@hello');
-Route::get('/insert', 'Home\HomeController@insert');
-Route::get('/edit', 'Home\HomeController@edit');
-Route::get('/read', 'Home\HomeController@read');
-Route::get('/delete', 'Home\HomeController@delete');
-
-// auto-generate appropriate HTTP request for CRUD operations
-// Route::resource('/user', 'Home\UserController');
-
-// route depending on input
-Route::get('/post/{id}', function ($id) { 
-    return "Post id: " . $id;
-});
-
-
-Route::get("/relationship", "Home\HomeController@relationship");
-
 Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/products', 'ProductsController@displayAll');
-// Display all products --> should be moved to /home
 Route::get("/", function(){
     return view("landing");
 });

@@ -35,7 +35,7 @@
                     $price = number_format((float)$price, 2, ".", "");
                 @endphp
                 <tr>
-                    <td><a href={{url("remove-from-cart/".$product->id)}} class="btn text-center">Remove</a></td>
+                    <td><a href={{url("remove-from-cart/".$product->id)}} class="btn btn-primary text-center">Remove</a></td>
                     <td>{{$product->name}}</td>
                     <td>{{$price}}</td>
                     <td>

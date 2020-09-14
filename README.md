@@ -2,7 +2,7 @@
     <img align="center" src="https://supplycart.my/wp-content/uploads/2019/09/sc_logo_tm.png">
 </p>
 
-# Supplycart Interview Test
+# Supplycart Interview Test - Laravel
 
 
 ### Instructions

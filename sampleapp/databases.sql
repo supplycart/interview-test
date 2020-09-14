@@ -1,6 +1,6 @@
 CREATE DATABASE supplycart;
 
-\connect supplycart;
+-- \connect supplycart;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -15,6 +15,11 @@ CREATE TABLE products (
     product_description VARCHAR(100) NOT NULL,
     price DECIMAL(18,2) NOT NULL
 );
+
+INSERT INTO products (product_name,product_description,price) VALUES ('Chair', 'A wooden chair', 5);
+INSERT INTO products (product_name,product_description,price) VALUES ('Table', 'A wooden table', 10);
+INSERT INTO products (product_name,product_description,price) VALUES ('Ladder', 'A metal ladder', 7);
+
 
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,

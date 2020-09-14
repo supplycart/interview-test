@@ -20,6 +20,10 @@
               <input type="password" class="form-control" id="pw-input" name="password">
             </div>
             <div class="form-group">
+              <label for="cpw-input">Confirm Password: </label>
+              <input type="password" class="form-control" id="cpw-input" name="c_password">
+            </div>
+            <div class="form-group">
               <label for="email-input">Email Address: </label>
               <input type="email" class="form-control" id="email-input" aria-describedby="email-help" name="email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

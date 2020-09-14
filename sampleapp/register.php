@@ -1,3 +1,4 @@
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <body>
     <div>
         <h2>Register</h2>
-        <form>
+        <form action="register.php" method="POST">
             <div class="form-group">
               <label for="username-input">Username: </label>
               <input type="text" class="form-control" id="username-input" name="username">

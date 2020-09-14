@@ -24,4 +24,5 @@
 
 1. Verify email after registration
 2. Order history
+3. Able to repeat order
 3. Deploy app to a server

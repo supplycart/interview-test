@@ -23,6 +23,7 @@
 ### Bonus Tasks
 
 1. Verify email after registration
-2. Order history
-3. Able to repeat order
-3. Deploy app to a server
+2. Product attributes and filtering e.g brand, category
+3. Order history
+4. Add unit tests
+5. Deploy app to a server

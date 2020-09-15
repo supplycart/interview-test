@@ -73,6 +73,42 @@ if (isset($_POST['register'])) {
     }
 }
 // User Log In
+if (isset($_POST['login'])) {
+    echo $errors[0];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $password = md5($password);
+    // Find user
+    $find_user = pg_query($db, "SELECT * FROM users WHERE username='{$username}' AND pw='{$password}'");
+    $found_user = pg_fetch_assoc($find_user);
+
+    // Blank field error handling
+    if (empty($username)) {
+        array_push($errors, "Username is required");
+        // echo "Username is required";
+    }
+    if (empty($password)) {
+        array_push($errors, "Password is required");
+        // echo "Password is required";
+    }
+
+    /*
+        If statement provides additional layer of checks
+        in case of any errors in the database. Due to registration
+        error handling, usernames should be unique
+    */
+
+    if (pg_num_rows($find_user) == 1) { 
+        $_SESSION['username'] = $username;
+        $_SESSION['success'] = "You are now logged in";
+  	    header('location: index.php');
+    } else {
+        array_push($errors, "Incorrect username/password");
+        // echo "Incorrect username/password";
+    }
+}
+
 
 
 ?>

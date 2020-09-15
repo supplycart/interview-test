@@ -10,7 +10,7 @@
 <body>
     <div>
         <h2>Log In</h2>
-        <form>
+        <form action="login.php" method="POST">
             <div class="form-group">
               <label for="username-input">Username: </label>
               <input type="text" class="form-control" id="username-input" name="username">

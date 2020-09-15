@@ -81,7 +81,6 @@ if (isset($_POST['login'])) {
     $password = md5($password);
     // Find user
     $find_user = pg_query($db, "SELECT * FROM users WHERE username='{$username}' AND pw='{$password}'");
-    $found_user = pg_fetch_assoc($find_user);
 
     // Blank field error handling
     if (empty($username)) {
@@ -102,6 +101,7 @@ if (isset($_POST['login'])) {
     if (pg_num_rows($find_user) == 1) { 
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
+        $_SESSION['products'] = pg_fetch_all(pg_query($db, "SELECT * FROM products"));
   	    header('location: index.php');
     } else {
         array_push($errors, "Incorrect username/password");

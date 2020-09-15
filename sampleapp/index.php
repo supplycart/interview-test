@@ -22,44 +22,33 @@
 </head>
 <body>
     <h2>WELCOME <?php echo $_SESSION['username']; ?></h2>
+    
     <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <?php foreach ($_SESSION['products'] as $product) :?>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $product['product_name']; ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">$<?php echo $product['price']; ?></h6>
+                        <p class="card-text"><?php echo $product['product_description']; ?></p>
+                        <form action="login.php" method="POST">
+                            <label for=<?php echo $product['id'];?> Example select</label>
+                            <select class="form-control" id=<?php echo $product['id'];?> name="qty">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                            <input type="hidden" value=<?php echo $product['id']; ?> name='id'>
+                            <button type="submit" class="btn btn-primary" name="add">Add To Cart</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        <?php 
+            unset($product);
+        endforeach ?>
     </div>
 
     <p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>

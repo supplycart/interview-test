@@ -1,5 +1,6 @@
 <?php 
   session_start(); 
+  include('server.php');
 
   if (!isset($_SESSION['username'])) {
       $_SESSION['msg'] = "You must log in first";
@@ -31,7 +32,7 @@
                         <h5 class="card-title"><?php echo $product['product_name']; ?></h5>
                         <h6 class="card-subtitle mb-2 text-muted">$<?php echo $product['price']; ?></h6>
                         <p class="card-text"><?php echo $product['product_description']; ?></p>
-                        <form action="login.php" method="POST">
+                        <form action="index.php" method="POST">
                             <label for=<?php echo $product['id'];?> Example select</label>
                             <select class="form-control" id=<?php echo $product['id'];?> name="qty">
                                 <option>1</option>
@@ -41,6 +42,9 @@
                                 <option>5</option>
                             </select>
                             <input type="hidden" value=<?php echo $product['id']; ?> name='id'>
+                            <input type="hidden" value=<?php echo $product['product_name']; ?> name='product_name'>
+                            <input type="hidden" value=<?php echo $product['product_description']; ?> name='product_description'>
+                            <input type="hidden" value=<?php echo $product['price']; ?> name='price'>
                             <button type="submit" class="btn btn-primary" name="add">Add To Cart</button>
                         </form>
                     </div>
@@ -51,6 +55,7 @@
         endforeach ?>
     </div>
 
+    <p> <a href="cart.php">View Cart</a> </p>
     <p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
     
 </body>

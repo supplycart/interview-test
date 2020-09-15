@@ -4,6 +4,7 @@ session_start();
 $errors = [];
 $db_owner = "PuvanRaj";
 
+
 // Connect to the DB
 $db = pg_connect("host=localhost dbname=supplycart user=$db_owner");
 
@@ -109,6 +110,47 @@ if (isset($_POST['login'])) {
     }
 }
 
+// Filling the cart
+if (isset($_POST['add'])) {
+    $id = $_POST['id'];
+    $product_name = $_POST['product_name'];
+    $product_description = $_POST['product_description'];
+    $price = $_POST['price'];
+    $qty = $_POST['qty'];
+    $new = true;
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    
+    foreach ($_SESSION['cart'] as $key=>$cart_item) {
+        if ($id == $cart_item['id']) {
+            $qty += $cart_item['qty'];
+            $new = false;
+            $temp = $key;
+        break;
+        }
+    }
+
+    
+    $new_cart_item = [
+        'id' => $id,
+        'product_name' => $product_name,
+        'product_description' => $product_description,
+        'price' => $price,
+        'qty' => $qty
+    ];
+    
+    if ($new) {
+        array_push($_SESSION['cart'],$new_cart_item);
+    } else {
+        $_SESSION['cart'][$key] = $new_cart_item;
+    }
+
+    
+
+}
 
 
 ?>

@@ -62,7 +62,7 @@ if (isset($_POST['register'])) {
         // Encrypt password prior to database entry
         $new_user['pw'] = md5($new_user['pw']);
 
-        $res = pg_insert($db, 'users', $new_user);
+        $user_insert = pg_insert($db, 'users', $new_user);
         $_SESSION['username'] = $new_user['username'];
         $_SESSION['success'] = "You are now logged in";
         header('location: index.php');
@@ -123,7 +123,6 @@ if (isset($_POST['add'])) {
         $_SESSION['cart'] = [];
     }
 
-    
     foreach ($_SESSION['cart'] as $key=>$cart_item) {
         if ($id == $cart_item['id']) {
             $qty += $cart_item['qty'];
@@ -133,7 +132,6 @@ if (isset($_POST['add'])) {
         }
     }
 
-    
     $new_cart_item = [
         'id' => $id,
         'product_name' => $product_name,
@@ -141,7 +139,7 @@ if (isset($_POST['add'])) {
         'price' => $price,
         'qty' => $qty
     ];
-    
+
     if ($new) {
         array_push($_SESSION['cart'],$new_cart_item);
     } else {
@@ -150,6 +148,52 @@ if (isset($_POST['add'])) {
 
     
 
+}
+
+// Order Submisson
+// Part 1 - Creating the Order
+if (isset($_POST['order'])) {
+    $find_user_id = pg_fetch_assoc(pg_query($db, "SELECT * FROM users WHERE username='{$_SESSION['username']}'"));
+    $user_id = $find_user_id['id'];
+    $total_cost = $_POST['total_cost'];
+
+    $new_order = [
+        'user_id' => $user_id,
+        'total_cost' => $total_cost
+    ];
+
+    $order_insert = pg_insert($db, 'orders', $new_order);
+
+    // if ($order_insert) {
+    //     echo "Success - Order Created";
+    // } else {
+    //     echo "Failure - Order Not Created";
+    // }
+// Part 2 - Filling the Order
+    $order_id = pg_fetch_result(pg_query($db, "SELECT CURRVAL (pg_get_serial_sequence('orders','id'))"),0,0);
+    $order_items = $_POST['result'];
+    $items_qty = $_POST['qty'];
+    $items_cost = $_POST['costs'];
+
+    foreach ($order_items as $key => $item) {
+        $add_item = [
+            'order_id' => $order_id,
+            'product_id' => $item,
+            'quantity' => $items_qty[$key],
+            'cost' => $items_cost[$key]
+        ];
+
+        $line_item_insert = pg_insert($db, 'orderitems', $add_item);
+
+        // if ($line_item_insert) {
+        //     echo "Success - Line Item Created";
+        // } else {
+        //     echo "Failure - Line Item Not Created";
+        // }
+    }
+// Part 3 - Clear the cart
+    $_SESSION['cart'] = [];
+    header('location: index.php');
 }
 
 

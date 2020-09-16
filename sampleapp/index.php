@@ -56,7 +56,7 @@
     </div>
 
     <p> <a href="cart.php">View Cart</a> </p>
-    <p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
+    <p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>
     
 </body>
 </html>

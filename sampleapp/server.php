@@ -2,6 +2,8 @@
 session_start();
 
 $errors = [];
+
+// Change DB Owner Accordingly for use on Local Server
 $db_owner = "PuvanRaj";
 
 

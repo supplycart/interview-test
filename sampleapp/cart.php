@@ -28,7 +28,7 @@
     <title>Cart</title>
 </head>
 <body>
-    <h2>WELCOME <?php echo $_SESSION['username']; ?></h2>
+    <h2>WELCOME <?php echo $_SESSION['firstname']; ?></h2>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -40,25 +40,27 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($_SESSION['cart'] as $key=>$cart_item) :?>
-                <tr>
-                    <?php $product_list[] = $cart_item['id'];
-                          $qty_list[] = $cart_item['qty'];
-                          $cost_list[] = $cart_item['qty']*$cart_item['price'];
-                    ?>
-                    <th scope="row"><?php echo $key+1; ?></th>
-                    <td><?php echo $cart_item['product_name']; ?></td>
-                    <td>$<?php echo $cart_item['price']; ?></td>
-                    <td><?php echo $cart_item['qty']; ?></td>
-                    <td>$<?php  
-                            $total_cost += $cart_item['qty']*$cart_item['price'];
-                            echo $cart_item['qty']*$cart_item['price']; 
-                         ?>
-                    </td>
-                </tr>
-            <?php 
-                unset($cart_item);
-            endforeach ?>
+            <?php if(count($_SESSION['cart']) > 0 ) : ?>
+                <?php foreach ($_SESSION['cart'] as $key=>$cart_item) :?>
+                    <tr>
+                        <?php $product_list[] = $cart_item['id'];
+                            $qty_list[] = $cart_item['qty'];
+                            $cost_list[] = $cart_item['qty']*$cart_item['price'];
+                        ?>
+                        <th scope="row"><?php echo $key+1; ?></th>
+                        <td><?php echo $cart_item['product_name']; ?></td>
+                        <td>$<?php echo $cart_item['price']; ?></td>
+                        <td><?php echo $cart_item['qty']; ?></td>
+                        <td>$<?php  
+                                $total_cost += $cart_item['qty']*$cart_item['price'];
+                                echo $cart_item['qty']*$cart_item['price']; 
+                            ?>
+                        </td>
+                    </tr>
+                <?php 
+                    unset($cart_item);
+                endforeach ?>
+            <?php endif ?>
             <tr>
                 <th scope="col"></th>
                 <th scope="col"></th>

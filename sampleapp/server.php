@@ -69,7 +69,8 @@ if (isset($_POST['register'])) {
         $new_user['pw'] = md5($new_user['pw']);
 
         $user_insert = pg_insert($db, 'users', $new_user);
-        $_SESSION['username'] = $new_user['firstname'];
+        $_SESSION['username'] = $new_user['username'];
+        $_SESSION['firstname'] = $new_user['firstname'];
         $_SESSION['success'] = "You are now logged in";
         
         header('location: index.php');
@@ -82,7 +83,6 @@ if (isset($_POST['register'])) {
 }
 // User Log In
 if (isset($_POST['login'])) {
-    echo $errors[0];
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -111,8 +111,9 @@ if (isset($_POST['login'])) {
         $_SESSION['success'] = "You are now logged in";
 
         // Populate User Info (Backend)
-        $find_user_id = pg_fetch_assoc(pg_query($db, "SELECT * FROM users WHERE username='{$_SESSION['username']}'"));
-        $_SESSION['user_id'] = $find_user_id['id'];
+        $find_user_info = pg_fetch_assoc(pg_query($db, "SELECT * FROM users WHERE username='{$_SESSION['username']}'"));
+        $_SESSION['user_id'] = $find_user_info['id'];
+        $_SESSION['firstname'] = $find_user_info['firstname'];
 
         // Populate Products
         $_SESSION['products'] = pg_fetch_all(pg_query($db, "SELECT * FROM products"));

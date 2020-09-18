@@ -22,7 +22,7 @@
     <title>Home</title>
 </head>
 <body>
-    <h2>WELCOME <?php echo $_SESSION['username']; ?></h2>
+    <h2>WELCOME <?php echo $_SESSION['firstname']; ?></h2>
     <div class="row">
         <?php foreach ($_SESSION['products'] as $product) :?>
             <div class="col-sm-6">

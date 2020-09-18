@@ -11,6 +11,16 @@
     <div>
         <h2>Register</h2>
         <form action="register.php" method="POST">
+            <div class="row">
+              <div class="col">
+                <label for="username-input">First Name: </label>
+                <input type="text" class="form-control" id="firstname-input" name="firstname">
+              </div>
+              <div class="col">
+                <label for="username-input">Last Name: </label>
+                <input type="text" class="form-control" id="lastname-input" name="lastname">
+              </div>
+            </div>
             <div class="form-group">
               <label for="username-input">Username: </label>
               <input type="text" class="form-control" id="username-input" name="username">

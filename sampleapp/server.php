@@ -18,6 +18,8 @@ if (!$db) {
 // User Registration
 if (isset($_POST['register'])) {
     // Create variables w user form data
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -27,6 +29,8 @@ if (isset($_POST['register'])) {
     if (empty($username)) { array_push($errors, "Username cannot be blank"); }
     if (empty($email)) { array_push($errors, "Email cannot be blank"); }
     if (empty($password)) { array_push($errors, "Password cannot be blank"); }
+    if (empty($firstname)) { array_push($errors, "First Name cannot be blank"); }
+    if (empty($lastname)) { array_push($errors, "Last Name cannot be blank"); }
     
     // Password confirmation failure
     if ($password != $conf_password) {
@@ -36,6 +40,8 @@ if (isset($_POST['register'])) {
 
     // Array for inserting data into database
     $new_user = array(
+        'firstname' => $firstname,
+        'lastname' => $lastname,
         'username' => $username,
         'email' => $email,
         'pw' => $password
@@ -52,7 +58,7 @@ if (isset($_POST['register'])) {
         }
     
         if ($check_user_result['email'] === $new_user['email']) {
-          array_push($errors, "email already exists");
+          array_push($errors, "Email already exists");
         //   echo "Email already exists";
         }
     }
@@ -63,8 +69,9 @@ if (isset($_POST['register'])) {
         $new_user['pw'] = md5($new_user['pw']);
 
         $user_insert = pg_insert($db, 'users', $new_user);
-        $_SESSION['username'] = $new_user['username'];
+        $_SESSION['username'] = $new_user['firstname'];
         $_SESSION['success'] = "You are now logged in";
+        
         header('location: index.php');
         // if ($res) {
         //     echo "POST data is successfully logged\n";
@@ -102,8 +109,15 @@ if (isset($_POST['login'])) {
     if (pg_num_rows($find_user) == 1) { 
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
+
+        // Populate User Info (Backend)
+        $find_user_id = pg_fetch_assoc(pg_query($db, "SELECT * FROM users WHERE username='{$_SESSION['username']}'"));
+        $_SESSION['user_id'] = $find_user_id['id'];
+
+        // Populate Products
         $_SESSION['products'] = pg_fetch_all(pg_query($db, "SELECT * FROM products"));
-  	    header('location: index.php');
+
+        header('location: index.php');
     } else {
         array_push($errors, "Incorrect username/password");
         // echo "Incorrect username/password";
@@ -145,20 +159,15 @@ if (isset($_POST['add'])) {
     } else {
         $_SESSION['cart'][$key] = $new_cart_item;
     }
-
-    
-
 }
 
 // Order Submisson
 // Part 1 - Creating the Order
 if (isset($_POST['order'])) {
-    $find_user_id = pg_fetch_assoc(pg_query($db, "SELECT * FROM users WHERE username='{$_SESSION['username']}'"));
-    $user_id = $find_user_id['id'];
     $total_cost = $_POST['total_cost'];
 
     $new_order = [
-        'user_id' => $user_id,
+        'user_id' => $_SESSION['user_id'],
         'total_cost' => $total_cost
     ];
 
@@ -196,5 +205,27 @@ if (isset($_POST['order'])) {
     header('location: index.php');
 }
 
+// Populate History
+if (isset($_POST['history'])) {
+    $_SESSION['history'] = pg_fetch_all(pg_query($db,"SELECT * FROM orders WHERE user_id='{$_SESSION['user_id']}'"));
+    $_SESSION['history_order_items'] = [];
+    foreach ($_SESSION['history'] as $odr) {
+        $ord_items_iter = pg_fetch_all(pg_query($db, "SELECT * FROM orderitems WHERE order_id='{$odr['id']}'"));
+        $ord_items = [];
+        foreach ($ord_items_iter as $itm) {
+            $name = pg_fetch_assoc(pg_query($db, "SELECT * FROM products where id='{$itm['product_id']}'"));
+            $itm['prod_name'] = $name['product_name'];
+            $ord_items[] = $itm;
+        }
+        
+        $new_history_item = [
+            'products' => $ord_items,
+            'total_cost' => $odr['total_cost']
+        ];
 
-?>
+        array_push($_SESSION['history_order_items'], $new_history_item);
+    }
+    unset($odr);
+
+    header('location: history.php');
+}

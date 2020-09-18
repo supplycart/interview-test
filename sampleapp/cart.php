@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Login</title>
+    <title>Cart</title>
 </head>
 <body>
     <h2>WELCOME <?php echo $_SESSION['username']; ?></h2>
@@ -84,6 +84,9 @@
         </tbody>
     </table>
     <p> <a href="index.php">Back</a> </p>
+    <form action="cart.php" method="POST">
+        <button type="submit" name="history">History</button>
+    </form>
     <p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>
     
 </body>

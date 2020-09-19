@@ -1,33 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Product Page</title>
+@extends('layouts.app')
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  </head>
-  <body>
-
-    This is the list of product
-
-    <div class="container">
-      <div class="row">
-        <div class="col-6">This is 1</div>
-        <div class="col-6">
-          <div class="btn btn-info">View</div>
-          <div class="btn btn-danger">Delete</div>
-          <div class="btn btn-warning">Add to cart</div>
-          <div class="btn btn-success">Buy</div>
+@section('content')
+<div class="container">
+  <div class="row justify-content-center">
+    @if($products ?? null)
+      @foreach($products as $product)
+        <div class="row col-12 mb-4">
+          <div class="col-6">{{ $product['name'] }}</div>
+        <div class="col-6 btn btn-info">Add to cart</div>
         </div>
-      </div>
+      @endforeach
+    @else
+    <div class="col-12">
+      'There are no products'
     </div>
-  </body>
-</html>
+    @endif
+  </div>
+</div>
+@endsection

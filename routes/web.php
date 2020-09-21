@@ -27,12 +27,13 @@ Route::group([
     'prefix' => 'product'
 ], function () {
     Route::get('/', [ProductController::class, 'index'])->name('ProductIndex');
+    Route::post('/store', [ProductController::class, 'store'])->name('ProductStore');
 });
 
 Route::group([
     'prefix' => 'order'
 ], function() {
     Route::get('/', [OrderController::class, 'index'])->name('OrderIndex');
-    Route::post('/add', [OrderController::class, 'store'])->name('OrderStore');
+    // Route::post('/add', [OrderController::class, 'store'])->name('OrderStore');
     Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('OrderPlaceOrder');
 });

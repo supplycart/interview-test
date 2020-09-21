@@ -7,7 +7,14 @@
       @foreach($products as $product)
         <div class="row col-12 mb-4">
           <div class="col-6">{{ $product['name'] }}</div>
-        <div class="col-6 btn btn-info">Add to cart</div>
+          {{ Form::open([
+            'url' => route('ProductStore')
+            ]) }}
+
+          {{ Form::hidden('product_id', $product['product_id']) }}
+          {{ Form::submit('Add to cart', ['class' => 'col-6 btn btn-info']) }}
+        <!-- <div class="col-6 btn btn-info">Add to cart</div> -->
+        {{ Form::close() }}
         </div>
       @endforeach
     @else

@@ -8,6 +8,7 @@
         <div class="col-12 mb-4">
           {{ Form::open([
             'url' => route('ProductStore'),
+            'method' => 'POST'
             ]) }}
 
           <div class="form-row">

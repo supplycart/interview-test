@@ -6,7 +6,12 @@ use App\Product;
 
 class ProductController extends Controller
 {
-    public function index() {
+    /**
+     * Display availble products
+     *
+     */
+    public function index()
+    {
         $products = Product::all();
 
         return view('product.index', [

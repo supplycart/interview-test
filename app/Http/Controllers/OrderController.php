@@ -29,20 +29,23 @@ class OrderController extends Controller
      * Confirmed placed order
      *
      */
-    public function store(Request $request)
+    public function store()
     {
         $user = Auth::user();
 
-        $input = $request->all();
+        $cart = Cart::where('status_id', '=', Cart::STATUS_NEW)
+            ->first();
 
-        $cart_id = $input['cart_id'];
+        if (empty($cart)) {
+            return redirect()
+                ->route('ProductIndex')
+                ->with('error', 'You have empty cart, please add products into your cart');
+        }
 
         DB::transaction(function () use (
             $user,
-            $cart_id
+            $cart
         ) {
-            $cart = Cart::where('cart_id', '=', $cart_id)->first();
-
             $order = Order::firstOrNew([
                 'cart_id' => $cart->cart_id,
                 'user_id' => $user->id,
@@ -54,19 +57,8 @@ class OrderController extends Controller
             $cart->save();
         });
 
-        return route('ProductIndex')
-            ->with('Your order has been placed successfully');
+        return redirect()
+            ->route('ProductIndex')
+            ->with('success', 'You have succesfully placed an order!');
     }
-
-    /* public function add(Request $request) { */
-    /*     return response()->json([ */
-    /*         'order-added' => $request->all() */
-    /*     ]); */
-    /* } */
-
-    /* public function placeOrder(Request $request) { */
-    /*     return response()->json([ */
-    /*         'status' => 'Your order has been placed successfully, thank you!' */
-    /*     ]); */
-    /* } */
 }

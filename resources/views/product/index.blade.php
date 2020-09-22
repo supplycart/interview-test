@@ -24,7 +24,9 @@
       @endforeach
     @else
     <div class="col-12">
-      'There are no products'
+      <h1>
+        There are no products. Kindly add them.
+      </h1>
     </div>
     @endif
   </div>

@@ -18,27 +18,36 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
-    'prefix' => 'product'
-], function () {
-    Route::get('/', [ProductController::class, 'index'])->name('ProductIndex');
+    'middleware' => 'auth'
+], function(){
+    Route::group([
+        'prefix' => 'product'
+    ], function () {
+        Route::get('/', [ProductController::class, 'index'])->name('ProductIndex');
+    });
+
+    Route::group([
+        'prefix' => 'cart'
+    ], function () {
+        Route::get('/', [CartController::class, 'index'])->name('CartIndex');
+        Route::post('/add-to-cart', [CartController::class, 'store'])->name('CartStore');
+    });
+
+    Route::group([
+        'prefix' => 'order'
+    ], function() {
+        Route::get('/', [OrderController::class, 'index'])->name('OrderIndex');
+        Route::post('/placed-order', [OrderController::class, 'store'])->name('OrderStore');
+    });
 });
 
-Route::group([
-    'prefix' => 'cart'
-], function () {
-    Route::post('/add-to-cart', [CartController::class, 'store'])->name('CartStore');
-});
-
-Route::group([
-    'prefix' => 'order'
-], function() {
-    Route::get('/', [OrderController::class, 'index'])->name('OrderIndex');
-    Route::post('/placed-order', [OrderController::class, 'store'])->name('OrderStore');
+Route::fallback(function() {
+    return redirect()->route('welcome');
 });

@@ -25,7 +25,7 @@
     @else
     <div class="col-12">
       <h1>
-        There are no products. Kindly add them.
+        There are no products. At least one product is required.
       </h1>
     </div>
     @endif

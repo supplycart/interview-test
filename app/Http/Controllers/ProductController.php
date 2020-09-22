@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
-use App\CartProduct;
 use App\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -16,30 +12,5 @@ class ProductController extends Controller
         return view('product.index', [
             'products' => $products
         ]);
-    }
-
-    /**
-     * Add to cart
-     *
-     */
-    public function store(Request $request) {
-        $user = Auth::user();
-
-        $input = $request->all();
-
-        $cart = Cart::firstOrCreate([
-            'user_id' => $user->id,
-        ]);
-        $product = Product::where('product_id', '=', $input['product_id'])->first();
-
-        $CartProduct = CartProduct::create([
-            'cart_id' => $cart->cart_id,
-            'product_id' => $product->product_id,
-        ]);
-
-
-        return redirect()
-            ->back()
-            ->with('success', 'Successfully added to cart!');
     }
 }

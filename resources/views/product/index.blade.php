@@ -7,7 +7,7 @@
       @foreach($products as $product)
         <div class="col-12 mb-4">
           {{ Form::open([
-            'url' => route('ProductStore'),
+            'url' => route('CartStore'),
             'method' => 'POST'
             ]) }}
 

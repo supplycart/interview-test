@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -27,13 +28,17 @@ Route::group([
     'prefix' => 'product'
 ], function () {
     Route::get('/', [ProductController::class, 'index'])->name('ProductIndex');
-    Route::post('/store', [ProductController::class, 'store'])->name('ProductStore');
+});
+
+Route::group([
+    'prefix' => 'cart'
+], function () {
+    Route::post('/add-to-cart', [CartController::class, 'store'])->name('CartStore');
 });
 
 Route::group([
     'prefix' => 'order'
 ], function() {
     Route::get('/', [OrderController::class, 'index'])->name('OrderIndex');
-    // Route::post('/add', [OrderController::class, 'store'])->name('OrderStore');
-    Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('OrderPlaceOrder');
+    Route::post('/placed-order', [OrderController::class, 'store'])->name('OrderStore');
 });

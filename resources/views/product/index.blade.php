@@ -6,6 +6,7 @@
 </style>
 @section('content')
 <div class="container">
+  <div class="top-right"></div>
     @if($products ?? null)
       <?php 
         $productChunk = $products->chunk(3)
@@ -39,4 +40,34 @@
     </div>
     @endif
 </div>
+
+@if(Session::has('success'))
+  <div class="toast"
+    role="alert" 
+    aria-live="assertive"
+    aria-atomic="true"
+    data-delay="2000" 
+    style="position: absolute; top: 40; right: 0;" >
+    <div class="toast-header">
+      <strong class="mr-auto">Success</strong>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      {{ Session::get('success') }}
+    </div>
+  </div>
+
+<script>
+  window.addEventListener('load', function() {
+    console.log('hello');
+    $('.toast').toast('show');
+  });
+</script>
+<?php
+  Session::forget('success');
+?>
+@endif
+
 @endsection

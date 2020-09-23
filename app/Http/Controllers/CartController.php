@@ -61,9 +61,15 @@ class CartController extends Controller
             'product_id' => $product->product_id,
         ]);
 
+        $flashMessage = collect([
+            'Successfully added',
+            $product->name,
+            'to cart!',
+        ])
+        ->implode(' ');
 
         return redirect()
             ->back()
-            ->with('success', 'Successfully added to cart!');
+            ->with('success', $flashMessage);
     }
 }

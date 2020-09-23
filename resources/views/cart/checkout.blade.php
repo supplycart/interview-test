@@ -2,10 +2,14 @@
 
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="justify-content-center">
     @if(!empty($cart) ?? null)
+        <div class="row mb-4">
+          <div class="col-6"><strong>Product name</strong></div>
+          <div class="col-6"><strong>Price</strong></div>
+        </div>
     @foreach($cart->cartProduct as $cartProduct)
-        <div class="col-12 mb-4">
+        <div class="row mb-4">
           <div class="col-6">{{ $cartProduct->product->name }}</div>
           <div class="col-6">{{ number_format($cartProduct->product->price, 2) }}</div>
         </div>
@@ -19,7 +23,7 @@
         ]
       ) }}
 
-      <div class="col-12">
+      <div class="row col-12">
         <button class="btn btn-success btn-block">
           Place Order
         </button>

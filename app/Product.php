@@ -18,4 +18,17 @@ class Product extends Model
         'description',
         'price',
     ];
+
+    public function getImagePathAttribute()
+    { 
+        return (
+            array_key_exists('full_file_name', $this->attributes)
+            && (
+                $this->attributes['full_file_name'] != null
+                || $this->attributes['full_file_name'] != ''
+            )
+        )
+            ? url('/stock-images/'.$this->full_file_name)
+            : url('/stock-images/no-image-default.jpg');
+    }
 }

@@ -15,7 +15,11 @@
         <div class="row d-flex flex-row justify-content-start mb-4">
         @foreach($products as $product)
           <div class="card col-4">
-            <img class="img-top" src="" alt="{{ $product['name'] }}">
+            <img class="img-top" 
+              src="{{ $product['ImagePath'] }}"
+              alt="{{ $product['name'] }}"
+              height="150" 
+              width="150" >
             <div class="card-body">
               <h4 class="card-title">{{ $product['name'] }}</h4>
               <p class="card-text">{{ $product['description'] }}</p>

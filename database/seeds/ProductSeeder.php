@@ -16,27 +16,32 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Apple',
                 'description' => 'An apple',
-                'price' => 10
+                'price' => 10,
+                'full_file_name' => 'apple.jpg',
             ],
             [
                 'name' => 'Orange',
                 'description' => 'An orange',
-                'price' => 11
+                'price' => 11,
+                'full_file_name' => 'orange.jpg',
             ],
             [
                 'name' => 'Phone',
                 'description' => 'A phone',
-                'price' => 12
+                'price' => 12,
+                'full_file_name' => 'phone.jpg',
             ],
             [
                 'name' => 'Chair',
                 'description' => 'Chair',
-                'price' => 13
+                'price' => 13,
+                'full_file_name' => 'chair.jpg',
             ],
             [
                 'name' => 'Key',
                 'description' => 'A key',
-                'price' => 14
+                'price' => 14,
+                'full_file_name' => 'key.jpg',
             ],
         ]);
 
@@ -45,6 +50,7 @@ class ProductSeeder extends Seeder
                 'name' => $item['name'],
                 'description' => $item['description'],
                 'price' => $item['price'],
+                'full_file_name' => $item['full_file_name'],
                 'created_at' => Carbon::now(),
             ]);
         }

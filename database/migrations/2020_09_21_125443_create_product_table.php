@@ -19,6 +19,7 @@ class CreateProductTable extends Migration
             $table->string('name', 50);
             $table->string('description', 255);
             $table->decimal('price', 20, 5);
+            $table->string('full_file_name', 255)->nullable()->default(null);
 
             $table->timestamps();
             $table->softDeletes();

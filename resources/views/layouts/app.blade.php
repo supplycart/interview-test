@@ -33,7 +33,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                    @guest
+                    @else
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ProductIndex') }}">
+                          Product
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('CartIndex') }}">
+                          Cart
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('OrderIndex') }}">
+                          Orders
+                        </a>
+                      </li>
+                    @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->

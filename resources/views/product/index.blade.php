@@ -1,29 +1,34 @@
 @extends('layouts.app')
 <style>
-* {
-  border: 1px red solid;
-}
+{{-- * { --}}
+{{--   border: 1px red solid; --}}
+{{-- } --}}
 </style>
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
     @if($products ?? null)
-      @foreach($products as $product)
-        <div class="col-12 mb-4">
-          {{ Form::open([
-            'url' => route('CartStore'),
-            'method' => 'POST'
-            ]) }}
-
-          <div class="form-row">
-            <div class="form-group col-6">{{ $product['name'] }}</div>
-            {{ Form::hidden('product_id', $product['product_id']) }}
-            <div class="form-group col-6">
-            {{ Form::submit('Add to cart', ['class' => 'btn btn-info btn-block']) }}
+      <?php 
+        $productChunk = $products->chunk(3)
+      ?>
+      @foreach($productChunk as $products)
+        <div class="row d-flex flex-row justify-content-start mb-4">
+        @foreach($products as $product)
+          <div class="card col-4">
+            <img class="img-top" src="" alt="{{ $product['name'] }}">
+            <div class="card-body">
+              <h4 class="card-title">{{ $product['name'] }}</h4>
+              <p class="card-text">{{ $product['description'] }}</p>
+              {{ Form::open([
+                'url' => route('CartStore'),
+                'method' => 'POST'
+                ]) }}
+              {{ Form::hidden('product_id', $product['product_id']) }}
+              {{ Form::submit('Add to cart', ['class' => 'btn
+              btn-outline-primary btn-block']) }}
+              {{ Form::close() }}
             </div>
           </div>
-
-        {{ Form::close() }}
+        @endforeach
         </div>
       @endforeach
     @else
@@ -33,6 +38,5 @@
       </h1>
     </div>
     @endif
-  </div>
 </div>
 @endsection

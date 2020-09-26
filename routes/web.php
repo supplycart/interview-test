@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', function() {
     return redirect()->route('ProductIndex');

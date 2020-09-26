@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Cart;
 use App\Order;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 

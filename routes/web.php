@@ -27,7 +27,7 @@ Route::get('/home', function() {
 });
 
 Route::group([
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'verified']
 ], function(){
     Route::group([
         'prefix' => 'product'

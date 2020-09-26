@@ -39,8 +39,11 @@ class ProductController extends Controller
 
         $products = $productQuery->get();
 
+        $attribute = Attribute::get()->pluck('name', 'name');
+
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'attribute_filter' => $attribute ?? [],
         ]);
     }
 }

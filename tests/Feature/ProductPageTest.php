@@ -64,6 +64,7 @@ class ProductPageTest extends TestCase
                     'product_id' => $product->product_id
             ]);
 
+        $response->assertSessionHas('success');
 
         $userCart = $user
             ->load([
@@ -79,6 +80,7 @@ class ProductPageTest extends TestCase
             $cartProduct->first()->product_id,
             'Product should be added into users cart'
         );
+
     }
 
     /**
@@ -102,7 +104,7 @@ class ProductPageTest extends TestCase
 
         $this->assertEquals(
             302,
-            $response->session()
+            $response->getStatusCode()
         );
 
         $response->assertSessionHas('error', 'Product ID not found!');

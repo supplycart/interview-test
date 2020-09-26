@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 
 class AttributeSeeder extends Seeder
 {
@@ -22,9 +21,6 @@ class AttributeSeeder extends Seeder
             [
                 'name' => 'wood'
             ],
-            [
-                'name' => 'item'
-            ]
         ]);
 
         foreach($items as $item) {

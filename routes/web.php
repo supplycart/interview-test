@@ -32,7 +32,7 @@ Route::group([
     Route::group([
         'prefix' => 'product'
     ], function () {
-        Route::get('/', [ProductController::class, 'index'])->name('ProductIndex');
+        Route::get('/{attribute_id?}', [ProductController::class, 'index'])->name('ProductIndex');
     });
 
     Route::group([

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\AttributeProduct;
 
 class Product extends Model
 {
@@ -30,5 +31,10 @@ class Product extends Model
         )
             ? url('/stock-images/'.$this->full_file_name)
             : url('/stock-images/no-image-default.jpg');
+    }
+
+    public function attributeProduct()
+    {
+        return $this->hasMany(AttributeProduct::class, 'product_id', 'product_id');
     }
 }

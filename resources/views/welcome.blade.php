@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>SupplyCart Test</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,8 +81,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                  Welcome to SupplyCart
+                  Welcome to Test Supplycart Demo
                 </div>
+
+                <p class="text-mute text-italic">
+                  *note: This website is for demo purposes, it does not affiliate
+                  with Supplycart&trade; or any other names
+                </p>
 
                 <!-- <div class="links"> -->
                 <!--     <a href="https://laravel.com/docs">Docs</a> -->
